@@ -1515,6 +1515,57 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!1 &1647157448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1647157450}
+  - component: {fileID: 1647157449}
+  m_Layer: 0
+  m_Name: CarManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1647157449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647157448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf0527e5a0327cd4d904cead828f0cd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carsPool: []
+  carPrefab: {fileID: 7692304558073906995, guid: 1d619f3baf36e0b4caa92c977a245f95,
+    type: 3}
+  spawnPoint: {fileID: 611455879138860388, guid: 7314337423148c8439fcd98558a9a5ef,
+    type: 3}
+  minSpawnTime: 1
+  maxSpawnTime: 4
+--- !u!4 &1647157450
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647157448}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -30.654053, y: -28.710579, z: 20.689528}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1826973609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,7 +1612,6 @@ GameObject:
   - component: {fileID: 1834784243}
   - component: {fileID: 1834784247}
   - component: {fileID: 1834784248}
-  - component: {fileID: 1834784249}
   m_Layer: 0
   m_Name: Guide
   m_TagString: Untagged
@@ -1640,7 +1690,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834784242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -0.25000024}
+  m_LocalPosition: {x: 0, y: 2, z: -0.25000024}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1684,25 +1734,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1834784249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1834784242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80988c1d92a7e234ebb88a027a0cfcae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  streetPrefabs:
-  - {fileID: 3129143488636788918, guid: fffcf83faddd44743aebe3a39b9c20db, type: 3}
-  - {fileID: 7616527229053923123, guid: 0c3c268ae1536ae4d85bb0714b76e19a, type: 3}
-  - {fileID: 4052009904347713727, guid: 8fd27a5131c0afc408cb041ae85a2252, type: 3}
-  activeStreets: []
-  distanceDestroy: 35
-  distanceCreate: 5
 --- !u!1 &1883523651
 GameObject:
   m_ObjectHideFlags: 0
@@ -2095,6 +2126,58 @@ Transform:
   m_Father: {fileID: 1834784246}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2052418973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2052418975}
+  - component: {fileID: 2052418976}
+  m_Layer: 0
+  m_Name: StreetSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2052418975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052418973}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2052418976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052418973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80988c1d92a7e234ebb88a027a0cfcae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  streetPrefabs:
+  - {fileID: 3129143488636788918, guid: fffcf83faddd44743aebe3a39b9c20db, type: 3}
+  - {fileID: 7616527229053923123, guid: 0c3c268ae1536ae4d85bb0714b76e19a, type: 3}
+  - {fileID: 6999156739613472800, guid: d04eaba9892c4fe448819b39c273a29e, type: 3}
+  poolSize: 10
+  distanceCreate: 35
+  distanceDestroy: 35
+  guideGameObject: {fileID: 1834784242}
 --- !u!1 &2069985667
 GameObject:
   m_ObjectHideFlags: 0
