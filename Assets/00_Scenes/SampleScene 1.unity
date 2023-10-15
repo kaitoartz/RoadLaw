@@ -1547,7 +1547,9 @@ MonoBehaviour:
   carsPool: []
   carPrefab: {fileID: 7692304558073906995, guid: 1d619f3baf36e0b4caa92c977a245f95,
     type: 3}
-  spawnPointName: Spawn
+  spawnPointNames:
+  - Spawn
+  - SpawnRotate
   minSpawnTime: 0.5
   maxSpawnTime: 4
 --- !u!4 &1647157450

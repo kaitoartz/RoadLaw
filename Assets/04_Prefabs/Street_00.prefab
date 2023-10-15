@@ -110,7 +110,6 @@ GameObject:
   - component: {fileID: 3129143490522525228}
   - component: {fileID: 3129143490522525227}
   - component: {fileID: 3129143490522525226}
-  - component: {fileID: 5952023044680571946}
   m_Layer: 0
   m_Name: Calle
   m_TagString: Street
@@ -197,19 +196,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &5952023044680571946
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3129143490522525225}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 4, z: 1}
-  m_Center: {x: 0.000000055782703, y: 1.5, z: 0}
 --- !u!1001 &6894189661914653186
 PrefabInstance:
   m_ObjectHideFlags: 0
