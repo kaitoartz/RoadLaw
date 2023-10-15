@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 3129143488636788921}
   - component: {fileID: 3129143488636788920}
   - component: {fileID: 3129143488636788919}
-  - component: {fileID: 1118751287494845224}
   m_Layer: 0
-  m_Name: Ground_00
+  m_Name: Street_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,19 +98,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1118751287494845224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3129143488636788918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80988c1d92a7e234ebb88a027a0cfcae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  streetPrefabs: []
 --- !u!1 &3129143490522525225
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +190,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3129143490522525225}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

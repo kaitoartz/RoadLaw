@@ -6,9 +6,9 @@ public class StreetGenerator : MonoBehaviour
 {
     public List<GameObject> streetPrefabs;
     private Vector3 nextPosition;
-    private List<GameObject> activeStreets;
-    [SerializeField] private float distanceDestroy = 50f;
-    [SerializeField] private float distanceCreate = 50f;
+    [SerializeField] private List<GameObject> activeStreets;
+    [SerializeField] private float distanceDestroy = 30f;
+    [SerializeField] private float distanceCreate = 30f;
 
     void Start()
     {
@@ -38,7 +38,7 @@ public class StreetGenerator : MonoBehaviour
     void GenerateStreet()
     {
         GameObject prefab = streetPrefabs[Random.Range(0, streetPrefabs.Count)];
-        GameObject streetSection = Instantiate(prefab, nextPosition, Quaternion.identity);
+        GameObject streetSection = Instantiate(prefab, nextPosition, Quaternion.identity);;
         nextPosition.z += streetSection.transform.localScale.z;
 
         // Añade la nueva calle a la lista de calles activas
