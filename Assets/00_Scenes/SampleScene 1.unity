@@ -1547,9 +1547,8 @@ MonoBehaviour:
   carsPool: []
   carPrefab: {fileID: 7692304558073906995, guid: 1d619f3baf36e0b4caa92c977a245f95,
     type: 3}
-  spawnPoint: {fileID: 611455879138860388, guid: 7314337423148c8439fcd98558a9a5ef,
-    type: 3}
-  minSpawnTime: 1
+  spawnPointName: Spawn
+  minSpawnTime: 0.5
   maxSpawnTime: 4
 --- !u!4 &1647157450
 Transform:
@@ -2175,8 +2174,8 @@ MonoBehaviour:
   - {fileID: 7616527229053923123, guid: 0c3c268ae1536ae4d85bb0714b76e19a, type: 3}
   - {fileID: 6999156739613472800, guid: d04eaba9892c4fe448819b39c273a29e, type: 3}
   poolSize: 10
-  distanceCreate: 35
-  distanceDestroy: 35
+  distanceCreate: 30
+  distanceDestroy: 30
   guideGameObject: {fileID: 1834784242}
 --- !u!1 &2069985667
 GameObject:

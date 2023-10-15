@@ -1,28 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    public float speed = 10f;  // Velocidad del vehículo hacia adelante.
-
-    private void Start()
+    private float speed = 10f;
+    private float maxY = -1f;
+    private void OnCollisionStay(Collision collision)
     {
-        // Aplica una fuerza hacia adelante al RigidBody del vehículo para hacerlo moverse.
-        GetComponent<Rigidbody>().velocity = transform.forward * speed;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        // Verifica si el vehículo colisiona con un objeto que no sea la calle.
-        if (!collision.gameObject.CompareTag("Street"))
+        if (collision.gameObject.tag == "Street")
         {
-            // Destruye el vehículo cuando deja de colisionar con la calle.
-            gameObject.SetActive(false);
+            gameObject.SetActive(true);
+            GetComponent<Rigidbody>().velocity = transform.forward * speed;
         }
         else
         {
-            gameObject.SetActive(true);
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (transform.position.y < maxY)
+        {
+            gameObject.SetActive(false);
         }
     }
 }

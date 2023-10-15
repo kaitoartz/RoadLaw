@@ -6,7 +6,7 @@ public class VehicleGenerator : MonoBehaviour
 {
     public List<GameObject> carsPool;
     public GameObject carPrefab;
-    public GameObject spawnPoint;
+    public string spawnPointName = "Spawn"; // Nombre del GameObject que actúa como el punto de generación
 
     public float minSpawnTime;
     public float maxSpawnTime;
@@ -20,8 +20,19 @@ public class VehicleGenerator : MonoBehaviour
         while (true)
         {
             GameObject car = GetInactiveCar();
-            car.transform.position = spawnPoint.transform.position;
-            car.SetActive(true);
+
+            // Buscar el GameObject llamado "Spawn" en la escena
+            GameObject spawnPoint = GameObject.Find(spawnPointName);
+
+            if (spawnPoint != null)
+            {
+                car.transform.position = spawnPoint.transform.position;
+                car.SetActive(true);
+            }
+            else
+            {
+                Debug.LogError("No se encontró el GameObject con el nombre " + spawnPointName);
+            }
 
             float waitTime = Random.Range(minSpawnTime, maxSpawnTime);
             yield return new WaitForSeconds(waitTime);
@@ -30,6 +41,8 @@ public class VehicleGenerator : MonoBehaviour
 
     GameObject GetInactiveCar()
     {
+        GameObject spawnPoint = GameObject.Find(spawnPointName);
+
         foreach (GameObject car in carsPool)
         {
             if (!car.activeInHierarchy)
