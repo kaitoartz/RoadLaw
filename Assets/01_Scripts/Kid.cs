@@ -9,9 +9,9 @@ public class Kid : MonoBehaviour
     //Tipo de distracción u obstáculo.
     [SerializeField] Transform distraction;
     //Está o no distraído, y si tocó el trigger de la distracción o no.
-    [SerializeField]bool distracted, target, pressed;
+    [SerializeField]bool distracted, target, pressed,land;
     [SerializeField] float speed, pickVelocity;
-    private Vector3 cam;
+    Vector3 cam, currentPos, offSet;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -19,7 +19,7 @@ public class Kid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(distracted && !pressed)
+        if (distracted && !pressed && land)
         {
             if(!target)
             {
@@ -31,7 +31,7 @@ public class Kid : MonoBehaviour
                 rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
             }
         }
-        else if(!pressed)
+        else if(!pressed && land)
         {
             var p = transform.position;
             Vector3 finalVelocity = transform.parent.position - new Vector3(p.x, -rb.velocity.y, p.z);
@@ -59,7 +59,11 @@ public class Kid : MonoBehaviour
 
     public void OnMouseDown()
     {
+        cam = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        currentPos = transform.position;
+        offSet = cam - currentPos;
         pressed = true;
+        land = false;
     }
 
     public void OnMouseUp()
@@ -74,15 +78,17 @@ public class Kid : MonoBehaviour
         interactúe con la distracción*/
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        land = true;
+    }
+
     void Touched()
     {
         if (pressed)
         {
-            cam = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            float currentPos = transform.position.y;
-            float offSet = cam.y - currentPos;
-            Vector3 targetPosition = new Vector3(cam.x, offSet, cam.z);
-            transform.position = targetPosition;
+            Vector3 finalPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - offSet;
+            transform.position = new Vector3(finalPos.x, 2f, finalPos.z);
         }
     }
 }

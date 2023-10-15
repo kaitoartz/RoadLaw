@@ -472,8 +472,9 @@ MonoBehaviour:
   distracted: 0
   target: 0
   pressed: 0
+  land: 0
   speed: 4
-  pickVelocity: 0.5
+  pickVelocity: 1
 --- !u!54 &368707576
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -607,8 +608,9 @@ MonoBehaviour:
   distracted: 0
   target: 0
   pressed: 0
+  land: 0
   speed: 4
-  pickVelocity: 0.5
+  pickVelocity: 1
 --- !u!54 &378885520
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -857,8 +859,9 @@ MonoBehaviour:
   distracted: 0
   target: 0
   pressed: 0
+  land: 0
   speed: 4
-  pickVelocity: 0.5
+  pickVelocity: 1
 --- !u!54 &677171874
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1526,8 +1529,9 @@ MonoBehaviour:
   distracted: 0
   target: 0
   pressed: 0
+  land: 0
   speed: 4
-  pickVelocity: 0.5
+  pickVelocity: 1
 --- !u!54 &1513115159
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1881,8 +1885,9 @@ MonoBehaviour:
   distracted: 0
   target: 0
   pressed: 0
+  land: 0
   speed: 4
-  pickVelocity: 0.5
+  pickVelocity: 1
 --- !u!54 &1883523657
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2016,8 +2021,9 @@ MonoBehaviour:
   distracted: 0
   target: 0
   pressed: 0
+  land: 0
   speed: 4
-  pickVelocity: 0.5
+  pickVelocity: 1
 --- !u!54 &1931653799
 Rigidbody:
   m_ObjectHideFlags: 0
