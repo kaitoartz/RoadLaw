@@ -9,7 +9,7 @@ public class Kid : MonoBehaviour
     //Tipo de distracción u obstáculo.
     [SerializeField] Transform distraction;
     //Está o no distraído, y si tocó el trigger de la distracción o no.
-    [SerializeField]bool distracted, target, pressed,land;
+    [SerializeField]bool distracted, target, pressed,land, isDead;
     [SerializeField] float speed, pickVelocity;
     Vector3 cam, currentPos, offSet;
     void Awake()
@@ -19,7 +19,7 @@ public class Kid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (distracted && !pressed && land)
+        if (distracted && !pressed && land && !isDead)
         {
             if(!target)
             {
@@ -31,13 +31,13 @@ public class Kid : MonoBehaviour
                 rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
             }
         }
-        else if(!pressed && land)
+        else if(!pressed && land && !isDead)
         {
             var p = transform.position;
             Vector3 finalVelocity = transform.parent.position - new Vector3(p.x, -rb.velocity.y, p.z);
             rb.velocity = new Vector3(finalVelocity.x * speed, rb.velocity.y, finalVelocity.z * speed);
         }
-        else if (pressed)
+        if (pressed | isDead)
         {
             rb.velocity = Vector3.zero;
         }
@@ -81,6 +81,7 @@ public class Kid : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         land = true;
+        StartCoroutine(Run());
     }
 
     void Touched()
@@ -89,6 +90,13 @@ public class Kid : MonoBehaviour
         {
             Vector3 finalPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - offSet;
             transform.position = new Vector3(finalPos.x, 2f, finalPos.z);
+            speed = 0f;
         }
+    }
+
+    IEnumerator Run()
+    {
+        yield return new WaitForSeconds(0.5f);
+        speed = 2.5f;
     }
 }

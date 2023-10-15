@@ -473,6 +473,7 @@ MonoBehaviour:
   target: 0
   pressed: 0
   land: 0
+  isDead: 0
   speed: 4
   pickVelocity: 1
 --- !u!54 &368707576
@@ -609,6 +610,7 @@ MonoBehaviour:
   target: 0
   pressed: 0
   land: 0
+  isDead: 0
   speed: 4
   pickVelocity: 1
 --- !u!54 &378885520
@@ -860,7 +862,8 @@ MonoBehaviour:
   target: 0
   pressed: 0
   land: 0
-  speed: 4
+  isDead: 0
+  speed: 3
   pickVelocity: 1
 --- !u!54 &677171874
 Rigidbody:
@@ -1530,6 +1533,7 @@ MonoBehaviour:
   target: 0
   pressed: 0
   land: 0
+  isDead: 0
   speed: 4
   pickVelocity: 1
 --- !u!54 &1513115159
@@ -1886,6 +1890,7 @@ MonoBehaviour:
   target: 0
   pressed: 0
   land: 0
+  isDead: 0
   speed: 4
   pickVelocity: 1
 --- !u!54 &1883523657
@@ -2022,6 +2027,7 @@ MonoBehaviour:
   target: 0
   pressed: 0
   land: 0
+  isDead: 0
   speed: 4
   pickVelocity: 1
 --- !u!54 &1931653799

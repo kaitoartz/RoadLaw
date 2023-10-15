@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Street
   - Spawn
+  - Vereda
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Kid4
   - Kid5
   - Kid6
-  - 
+  - Guide
   - 
   - 
   - 
