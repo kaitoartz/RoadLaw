@@ -7,9 +7,10 @@ public class Kid : MonoBehaviour
 {
     Rigidbody rb;
     //Tipo de distracción u obstáculo.
-    [SerializeField] Transform distraction;
+    public Transform distraction;
     //Está o no distraído, y si tocó el trigger de la distracción o no.
-    [SerializeField]bool distracted, target, pressed,land, isDead;
+    [SerializeField]bool target, pressed,land, isDead;
+    public bool distracted;
     [SerializeField] float speed, pickVelocity;
     Vector3 cam, currentPos, offSet;
     void Awake()
@@ -19,16 +20,31 @@ public class Kid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (distraction && transform.position.x == distraction.position.x && transform.position.y == distraction.position.y)
+        {
+            target = true;
+        }
+        else
+        {
+            target = false;
+        }
         if (distracted && !pressed && land && !isDead)
         {
-            if(!target)
+            if (distraction != null)
             {
-                Vector3 targetDistance = (distraction.position - transform.position);
-                rb.velocity = new Vector3(targetDistance.x * speed, rb.velocity.y, targetDistance.z * speed);
+                if(!target)
+                {
+                    Vector3 targetDistance = (distraction.position - transform.position);
+                    rb.velocity = new Vector3(targetDistance.x * speed, rb.velocity.y, targetDistance.z * speed);
+                }
+                else
+                {
+                    rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+                }
             }
             else
             {
-                rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+                rb.velocity = new Vector3(-1f * speed, rb.velocity.y, 0f);
             }
         }
         else if(!pressed && land && !isDead)
@@ -46,15 +62,11 @@ public class Kid : MonoBehaviour
     }
     void RotateTowards()
     {
-        var p = transform.parent.position;
-        if(distracted && rb.velocity != Vector3.zero && !pressed)
+        if (rb.velocity != Vector3.zero)
         {
-            transform.LookAt(new Vector3(distraction.position.x, transform.position.y, distraction.position.z));
+            transform.rotation = Quaternion.Slerp(Quaterniotransform.position, transform.position + rb.velocity));
         }
-        else if(rb.velocity != Vector3.zero && !pressed)
-        {
-            transform.LookAt(new Vector3(p.x,transform.position.y, p.z));
-        }
+        
     }
 
     public void OnMouseDown()
