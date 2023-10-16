@@ -229,6 +229,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 147919765}
+  - component: {fileID: 147919766}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -251,6 +252,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &147919766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147919764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19be50f5154eb8f45b56d338d63725bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kids:
+  - {fileID: 677171873}
+  - {fileID: 1883523656}
+  - {fileID: 378885519}
+  - {fileID: 368707575}
+  - {fileID: 1513115158}
+  - {fileID: 1931653798}
+  traps: []
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,11 +490,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distraction: {fileID: 0}
-  distracted: 0
   target: 0
   pressed: 0
   land: 0
   isDead: 0
+  distracted: 0
   speed: 4
   pickVelocity: 1
 --- !u!54 &368707576
@@ -606,11 +627,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distraction: {fileID: 0}
-  distracted: 0
   target: 0
   pressed: 0
   land: 0
   isDead: 0
+  distracted: 0
   speed: 4
   pickVelocity: 1
 --- !u!54 &378885520
@@ -858,11 +879,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distraction: {fileID: 0}
-  distracted: 0
   target: 0
   pressed: 0
   land: 0
   isDead: 0
+  distracted: 0
   speed: 3
   pickVelocity: 1
 --- !u!54 &677171874
@@ -1529,11 +1550,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distraction: {fileID: 0}
-  distracted: 0
   target: 0
   pressed: 0
   land: 0
   isDead: 0
+  distracted: 0
   speed: 4
   pickVelocity: 1
 --- !u!54 &1513115159
@@ -1886,11 +1907,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distraction: {fileID: 0}
-  distracted: 0
   target: 0
   pressed: 0
   land: 0
   isDead: 0
+  distracted: 0
   speed: 4
   pickVelocity: 1
 --- !u!54 &1883523657
@@ -2023,11 +2044,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distraction: {fileID: 0}
-  distracted: 0
   target: 0
   pressed: 0
   land: 0
   isDead: 0
+  distracted: 0
   speed: 4
   pickVelocity: 1
 --- !u!54 &1931653799
