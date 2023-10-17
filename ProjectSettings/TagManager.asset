@@ -8,6 +8,7 @@ TagManager:
   - Spawn
   - Vereda
   - Trap
+  - Fila
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,7 @@ public class Kid : MonoBehaviour
     //Está o no distraído, y si tocó el trigger de la distracción o no.
     [SerializeField]bool target, pressed,land, isDead;
     public bool distracted;
-    [SerializeField] float speed, pickVelocity;
+    [SerializeField] float speed, rotSpeed;
     Vector3 cam, currentPos, offSet;
     void Awake()
     {
@@ -64,7 +64,9 @@ public class Kid : MonoBehaviour
     {
         if (rb.velocity != Vector3.zero)
         {
-            transform.rotation = Quaternion.Slerp(Quaterniotransform.position, transform.position + rb.velocity));
+            Vector3  rot = transform.position + rb.velocity;
+            Quaternion final = Quaternion.LookRotation(new Vector3(rot.x, transform.position.y, rot.z) - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, final, rotSpeed);
         }
         
     }
@@ -85,6 +87,12 @@ public class Kid : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Fila") && distracted)
+        {
+            distracted = false;
+            target = false;
+            distraction = null;
+        }
         /*Iniciar animaciones
         y eventos cuando el niño 
         interactúe con la distracción*/
