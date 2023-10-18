@@ -325,7 +325,12 @@ MonoBehaviour:
   - {fileID: 368707575}
   - {fileID: 1513115158}
   - {fileID: 1931653798}
-  traps: []
+  traps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0

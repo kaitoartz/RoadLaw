@@ -20,7 +20,7 @@ public class Kid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (distraction && transform.position.x == distraction.position.x && transform.position.y == distraction.position.y)
+        if (distracted && transform.position.x == distraction.position.x && transform.position.y == distraction.position.y)
         {
             target = true;
         }
