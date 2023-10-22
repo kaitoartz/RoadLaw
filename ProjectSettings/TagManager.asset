@@ -7,6 +7,8 @@ TagManager:
   - Street
   - Spawn
   - Vereda
+  - Trap
+  - Fila
   layers:
   - Default
   - TransparentFX
