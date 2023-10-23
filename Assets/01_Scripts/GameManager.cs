@@ -6,7 +6,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Kid[] kids;
-    public GameObject[] traps;
     private int index, probabilityForKid;
     public static GameManager instance;
     private void Awake()
@@ -42,34 +41,13 @@ public class GameManager : MonoBehaviour
     }
     void DistractorsForKids()
     {
-        if (kids[index].distraction == null)
+        foreach (Kid k in kids)
         {
-            traps = GameObject.FindGameObjectsWithTag("Trap");
-            GameObject closestObject = null;
-            float closestDistance = Mathf.Infinity;
-            Vector3 currentPosition = kids[index].transform.position;
-
-            foreach (GameObject trap in traps)
+            if (k.distracted && k.distraction == null)
             {
-                float distance = Vector3.Distance(trap.transform.position, currentPosition);
-                if (distance < closestDistance)
-                {
-                    closestObject = trap;
-                    closestDistance = distance;
-                }
-            }
-
-            if (closestObject != null && !closestObject.GetComponent<Distract>().called)
-            {
-                Distract d = closestObject.GetComponent<Distract>();
+                k.distraction = GameObject.FindWithTag("Trap").transform;
+                Distract d = k.distraction.GetComponent<Distract>();
                 d.called = true;
-                kids[index].distraction = closestObject.transform;
-                StartCoroutine(DistractingKids());
-            }
-            else
-            {
-                print("Leer");
-                DistractorsForKids();
             }
         }
     }
