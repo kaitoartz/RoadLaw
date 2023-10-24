@@ -43,6 +43,10 @@ public class GameManager : MonoBehaviour
             ConfirmDistraction();
             return;
         }
+        else
+        {
+            StartCoroutine(DistractingKids());
+        }
     }
     //Asigna el niño al distractor más cercano existente y que no ha llamado a algun otro niño anteriormente.
     void DistractorsForKids()
@@ -57,5 +61,6 @@ public class GameManager : MonoBehaviour
                 return;
             }
         }
+        StartCoroutine(DistractingKids());
     }
 }
