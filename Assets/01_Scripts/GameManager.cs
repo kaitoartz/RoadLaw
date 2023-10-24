@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
         probabilityForKid = UnityEngine.Random.Range(0, 3);
         yield return new WaitForSeconds(2f);
         ConfirmDistraction();
-        yield break;
     }
 
     void ConfirmDistraction()
@@ -35,17 +34,11 @@ public class GameManager : MonoBehaviour
         {
             kids[index].distracted = true;
             DistractorsForKids();
-            return;
         }
         //Si el niño llamado se encuentra distraído, entonces la funcion se repite hasta que encuentre otro niño para distraer;
         else if(probabilityForKid == 2)
         {
             ConfirmDistraction();
-            return;
-        }
-        else
-        {
-            StartCoroutine(DistractingKids());
         }
     }
     //Asigna el niño al distractor más cercano existente y que no ha llamado a algun otro niño anteriormente.
@@ -58,7 +51,6 @@ public class GameManager : MonoBehaviour
                 k.distraction = GameObject.FindWithTag("Trap").transform;
                 Distract d = k.distraction.GetComponent<Distract>();
                 d.called = true;
-                return;
             }
         }
         StartCoroutine(DistractingKids());
