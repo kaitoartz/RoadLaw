@@ -2,46 +2,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Semaforo : MonoBehaviour
+public enum TrafficLightState
 {
-    public bool estaRojo = false;
-    private float speed = 10f;
+    Red,
+    Yellow,
+    Green
+}
 
+public class Semaforo : MonoBehaviour
+{ 
+    public delegate void TrafficLightChanged(TrafficLightState newState);
+    public static event TrafficLightChanged OnTrafficLightChanged;
+    public TrafficLightState currentState;
+    public float redTime = 10f;
+    public float yellowTime = 3f;
+    public float greenTime = 15f;
 
-    // Lista para almacenar los autos que se mueven en el eje Z
-    public List<GameObject> autosEjeZ = new List<GameObject>();
+    void Start()
+    {
 
-    // Lista para almacenar los autos que se mueven en el eje X
-    public List<GameObject> autosEjeX = new List<GameObject>();
+        StartCoroutine(TrafficLightSequence());
+
+    }
 
     void Update()
     {
-        // Verifica el estado del semáforo y detiene o permite que los autos se muevan según sea necesario
-        if (estaRojo)
+        switch (currentState)
         {
-            DetenerAutos(autosEjeZ);
-            DetenerAutos(autosEjeX);
-        }
-        else
-        {
-            PermitirAutos(autosEjeZ);
-            PermitirAutos(autosEjeX);
+            case TrafficLightState.Red:
+                // Lógica para estado rojo 
+                break;
+
+            case TrafficLightState.Yellow:
+                // Lógica para estado amarillo
+                break;
+
+            case TrafficLightState.Green:
+                // Lógica para estado verde
+                break;
         }
     }
 
-    void DetenerAutos(List<GameObject> autos)
+    IEnumerator TrafficLightSequence()
     {
-        foreach (GameObject auto in autos)
+        while (true)
         {
-            auto.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        }
-    }
+            currentState = TrafficLightState.Red;
+            OnTrafficLightChanged?.Invoke(currentState);
+            yield return new WaitForSeconds(redTime);
 
-    void PermitirAutos(List<GameObject> autos)
-    {
-        foreach (GameObject auto in autos)
-        {
-            auto.GetComponent<Rigidbody>().velocity = auto.transform.forward * speed; // Ajusta la velocidad según sea necesario
+            currentState = TrafficLightState.Yellow;
+            OnTrafficLightChanged?.Invoke(currentState);
+            yield return new WaitForSeconds(yellowTime);
+
+            currentState = TrafficLightState.Green;
+            OnTrafficLightChanged?.Invoke(currentState);
+            yield return new WaitForSeconds(greenTime);
         }
-    }
+     }
 }
