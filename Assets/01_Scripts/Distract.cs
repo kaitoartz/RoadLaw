@@ -14,6 +14,15 @@ public class Distract : MonoBehaviour
     {
         transform.parent = null;
     }
+
+    private void Update()
+    {
+        if (called && gameObject.CompareTag("Trap"))
+        {
+            gameObject.tag = "Untagged";
+        }
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Kid"))

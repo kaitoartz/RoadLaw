@@ -6,70 +6,55 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Kid[] kids;
-    public GameObject[] traps;
     private int index, probabilityForKid;
     public static GameManager instance;
     private void Awake()
     {
         instance = this;
     }
-
-    // Start is called before the first frame update
+    //Inicia Corrutina;
     void Start()
     {
         StartCoroutine(DistractingKids());
     }
+    //Define cada cuánto tiempo un niño podría distraerse.
     IEnumerator DistractingKids()
     {
         probabilityForKid = UnityEngine.Random.Range(0, 3);
         yield return new WaitForSeconds(2f);
         ConfirmDistraction();
+        yield break;
     }
 
     void ConfirmDistraction()
     {
+        //Randomiza el niño que se distraerá;
         index = UnityEngine.Random.Range(0, 6);
+        //Si el niño llamado no se encuentra distraído, se distraerá;
         if (probabilityForKid == 2 && !kids[index].distracted)
         {
             kids[index].distracted = true;
             DistractorsForKids();
+            return;
         }
+        //Si el niño llamado se encuentra distraído, entonces la funcion se repite hasta que encuentre otro niño para distraer;
         else if(probabilityForKid == 2)
         {
-            print("Leer");
             ConfirmDistraction();
+            return;
         }
     }
+    //Asigna el niño al distractor más cercano existente y que no ha llamado a algun otro niño anteriormente.
     void DistractorsForKids()
     {
-        if (kids[index].distraction == null)
+        foreach (Kid k in kids)
         {
-            traps = GameObject.FindGameObjectsWithTag("Trap");
-            GameObject closestObject = null;
-            float closestDistance = Mathf.Infinity;
-            Vector3 currentPosition = kids[index].transform.position;
-
-            foreach (GameObject trap in traps)
+            if (k.distracted && k.distraction == null)
             {
-                float distance = Vector3.Distance(trap.transform.position, currentPosition);
-                if (distance < closestDistance)
-                {
-                    closestObject = trap;
-                    closestDistance = distance;
-                }
-            }
-
-            if (closestObject != null && !closestObject.GetComponent<Distract>().called)
-            {
-                Distract d = closestObject.GetComponent<Distract>();
+                k.distraction = GameObject.FindWithTag("Trap").transform;
+                Distract d = k.distraction.GetComponent<Distract>();
                 d.called = true;
-                kids[index].distraction = closestObject.transform;
-                StartCoroutine(DistractingKids());
-            }
-            else
-            {
-                print("Leer");
-                DistractorsForKids();
+                return;
             }
         }
     }

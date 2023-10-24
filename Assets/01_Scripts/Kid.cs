@@ -17,46 +17,54 @@ public class Kid : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-    // Update is called once per frame
     void Update()
     {
+        //niño llega a la posicion del distractor mientras está distraído;
         if (distracted && transform.position.x == distraction.position.x && transform.position.y == distraction.position.y)
         {
             target = true;
         }
         else
         {
+            //niño distraído no está en la posición del distractor;
             target = false;
         }
+        //niño está distraído.
         if (distracted && !pressed && land && !isDead)
         {
             if (distraction != null)
             {
+                //Al llegar a la distracción.
                 if(!target)
                 {
                     Vector3 targetDistance = (distraction.position - transform.position);
                     rb.velocity = new Vector3(targetDistance.x * speed, rb.velocity.y, targetDistance.z * speed);
                 }
+                //Al no estar en la pisicón del distractor.
                 else
                 {
                     rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
                 }
             }
+            //Al no tener asignada una distracción.
             else
             {
                 rb.velocity = new Vector3(-1f * speed, rb.velocity.y, 0f);
             }
         }
+        //El niño no está distraído
         else if(!pressed && land && !isDead)
         {
             var p = transform.position;
             Vector3 finalVelocity = transform.parent.position - new Vector3(p.x, -rb.velocity.y, p.z);
             rb.velocity = new Vector3(finalVelocity.x * speed, rb.velocity.y, finalVelocity.z * speed);
         }
+        //En caso de muerte, levantar al niño o Pausa (Vos Pipo ya sabí).
         if (pressed | isDead)
         {
             rb.velocity = Vector3.zero;
         }
+        //Setear rotación y tenector de clicks.
         RotateTowards();
         Touched();
     }
@@ -70,7 +78,7 @@ public class Kid : MonoBehaviour
         }
         
     }
-
+    //Levantar al niño.
     public void OnMouseDown()
     {
         cam = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -79,12 +87,12 @@ public class Kid : MonoBehaviour
         pressed = true;
         land = false;
     }
-
+    //Bajar al niño.
     public void OnMouseUp()
     {
         pressed = false;
     }
-
+    //Al colisionar con Triggers.
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Fila") && distracted)
@@ -97,13 +105,13 @@ public class Kid : MonoBehaviour
         y eventos cuando el niño 
         interactúe con la distracción*/
     }
-
+    //Al colisionar con físicas.
     private void OnCollisionEnter(Collision other)
     {
         land = true;
         StartCoroutine(Run());
     }
-
+    //Detectar Mouse;
     void Touched()
     {
         if (pressed)
@@ -113,7 +121,7 @@ public class Kid : MonoBehaviour
             speed = 0f;
         }
     }
-
+    
     IEnumerator Run()
     {
         yield return new WaitForSeconds(0.5f);
