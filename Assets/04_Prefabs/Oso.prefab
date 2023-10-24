@@ -150,7 +150,7 @@ MonoBehaviour:
   land: 0
   isDead: 0
   distracted: 0
-  speed: 3
+  speed: 2.5
   rotSpeed: 0.25
 --- !u!54 &-6716716512654798550
 Rigidbody:
