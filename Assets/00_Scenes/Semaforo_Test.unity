@@ -717,7 +717,7 @@ PrefabInstance:
     - target: {fileID: 3646336328388446314, guid: 746426c37e90ac74e9c7c201a2bc7ddd,
         type: 3}
       propertyPath: m_Name
-      value: Oso
+      value: Kid_05
       objectReference: {fileID: 0}
     - target: {fileID: 3858299162622602539, guid: 746426c37e90ac74e9c7c201a2bc7ddd,
         type: 3}
