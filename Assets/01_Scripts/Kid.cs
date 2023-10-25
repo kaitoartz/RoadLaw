@@ -9,7 +9,7 @@ public class Kid : MonoBehaviour
     //Tipo de distracción u obstáculo.
     public Transform distraction;
     //Está o no distraído, y si tocó el trigger de la distracción o no.
-    [SerializeField]bool target, pressed,land, isDead;
+    public bool target, pressed,land, isDead;
     public bool distracted;
     [SerializeField] float speed, rotSpeed;
     Vector3 cam, currentPos, offSet;
@@ -38,7 +38,7 @@ public class Kid : MonoBehaviour
                 if(!target)
                 {
                     Vector3 targetDistance = (distraction.position - transform.position);
-                    rb.velocity = new Vector3(targetDistance.x * speed, rb.velocity.y, targetDistance.z * speed);
+                    rb.velocity = new Vector3(targetDistance.x * 1.5f, rb.velocity.y, targetDistance.z * 1.5f);
                 }
                 //Al no estar en la pisicón del distractor.
                 else
@@ -55,8 +55,8 @@ public class Kid : MonoBehaviour
         //El niño no está distraído
         else if(!pressed && land && !isDead)
         {
-            Vector3 finalVelocity = transform.parent.position;
-            transform.position = finalVelocity;
+            Vector3 p = transform.parent.position - transform.position;
+            rb.velocity = new Vector3(p.x * speed, rb.velocity.y, p.z * speed);
         }
         //En caso de muerte, levantar al niño o Pausa (Vos Pipo ya sabí).
         if (pressed | isDead)
@@ -101,9 +101,6 @@ public class Kid : MonoBehaviour
             target = false;
             distraction = null;
         }
-        /*Iniciar animaciones
-        y eventos cuando el niño 
-        interactúe con la distracción*/
     }
     //Al colisionar con físicas.
     private void OnCollisionEnter(Collision other)
