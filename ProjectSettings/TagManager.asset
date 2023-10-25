@@ -9,6 +9,8 @@ TagManager:
   - Vereda
   - Trap
   - Fila
+  - Semaforo
+  - Kid
   layers:
   - Default
   - TransparentFX
