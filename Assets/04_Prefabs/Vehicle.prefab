@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4553854418000918223}
   - component: {fileID: 4221441022429500576}
   - component: {fileID: -1080909409085512157}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Vehicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,5 +127,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b96fdf9a1c82fe448a6243316a11dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  semaforo: {fileID: 3525439565682338824, guid: 28b6bc5ad3adde24faaf87f28e36bde2,
-    type: 3}
+  isStopped: 0
+  trafficManager: {fileID: 0}
