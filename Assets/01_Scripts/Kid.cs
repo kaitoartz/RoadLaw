@@ -8,9 +8,10 @@ public class Kid : MonoBehaviour
      public Rigidbody rb;
     //Tipo de distracción u obstáculo.
     public Transform distraction;
-    //Está o no distraído, y si tocó el trigger de la distracción o no.
-    public bool target, pressed,land, isDead;
-    public bool distracted;
+    //Está o no distraído, y si tocó el trigger de la distracción o no, isDead es si el niño está muerto.
+    public bool distracted, target, isDead;
+    //Si el niño esta en tierra, Si el niño ha sido clickeado.
+    private bool land, pressed;
     [SerializeField] float speed, rotSpeed;
     Vector3 cam, currentPos, offSet;
     void Awake()
@@ -24,17 +25,6 @@ public class Kid : MonoBehaviour
         {
             if (distraction != null)
             {
-                //Al llegar a la distracción.
-                if(!target)
-                {
-                    Vector3 targetDistance = (distraction.position - transform.position);
-                    rb.velocity = new Vector3(targetDistance.x * 1.5f, rb.velocity.y, targetDistance.z * 1.5f);
-                }
-                //Al no estar en la pisicón del distractor.
-                else
-                {
-                    rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
-                }
                 if (transform.position.x == distraction.position.x && transform.position.y == distraction.position.y)
                 {
                     target = true;
@@ -42,6 +32,17 @@ public class Kid : MonoBehaviour
                 else
                 {
                     target = false;
+                }
+                //Al llegar a la distracción.
+                if(!target)
+                {
+                    Vector3 targetDistance = (distraction.position - transform.position);
+                    rb.velocity = new Vector3(targetDistance.x * 1.5f, rb.velocity.y, targetDistance.z * 1.5f);
+                }
+                //Al no estar en la posición del distractor.
+                else
+                {
+                    rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
                 }
             }
             //Al no tener asignada una distracción.
