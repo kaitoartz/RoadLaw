@@ -15,7 +15,7 @@ public class Distract : MonoBehaviour
         transform.parent = null;
     }
 
-    private void Update()
+    public void Update()
     {
         if (called && gameObject.CompareTag("Trap"))
         {
@@ -23,11 +23,4 @@ public class Distract : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Kid"))
-        {
-            kid = other.gameObject.GetComponent<Kid>();
-        }
-    }
 }
