@@ -55,9 +55,8 @@ public class Kid : MonoBehaviour
         //El niño no está distraído
         else if(!pressed && land && !isDead)
         {
-            var p = transform.position;
-            Vector3 finalVelocity = transform.parent.position - new Vector3(p.x, -rb.velocity.y, p.z);
-            rb.velocity = new Vector3(finalVelocity.x * speed, rb.velocity.y, finalVelocity.z * speed);
+            Vector3 finalVelocity = transform.parent.position;
+            transform.position = finalVelocity;
         }
         //En caso de muerte, levantar al niño o Pausa (Vos Pipo ya sabí).
         if (pressed | isDead)
@@ -97,6 +96,7 @@ public class Kid : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Fila") && distracted)
         {
+            print("ok");
             distracted = false;
             target = false;
             distraction = null;
