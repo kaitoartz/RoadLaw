@@ -33,13 +33,21 @@ public class Parent : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (walk)
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        // Ignora la capa especificada (layerToIgnore) al realizar el raycast
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            walk = false;
-        }
-        else
-        {
-            walk = true;
+            if (walk)
+            {
+                walk = false;
+            }
+            else
+            {
+                walk = true;
+            }
         }
     }
 }
