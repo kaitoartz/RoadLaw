@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Kid : MonoBehaviour
 {
-    Rigidbody rb;
+     public Rigidbody rb;
     //Tipo de distracción u obstáculo.
     public Transform distraction;
     //Está o no distraído, y si tocó el trigger de la distracción o no.
@@ -19,16 +19,6 @@ public class Kid : MonoBehaviour
     }
     void Update()
     {
-        //niño llega a la posicion del distractor mientras está distraído;
-        if (distracted && transform.position.x == distraction.position.x && transform.position.y == distraction.position.y)
-        {
-            target = true;
-        }
-        else
-        {
-            //niño distraído no está en la posición del distractor;
-            target = false;
-        }
         //niño está distraído.
         if (distracted && !pressed && land && !isDead)
         {
@@ -44,6 +34,14 @@ public class Kid : MonoBehaviour
                 else
                 {
                     rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+                }
+                if (transform.position.x == distraction.position.x && transform.position.y == distraction.position.y)
+                {
+                    target = true;
+                }
+                else
+                {
+                    target = false;
                 }
             }
             //Al no tener asignada una distracción.
@@ -63,7 +61,7 @@ public class Kid : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
         }
-        //Setear rotación y tenector de clicks.
+        //Setear rotación y detector de clicks.
         RotateTowards();
         Touched();
     }
