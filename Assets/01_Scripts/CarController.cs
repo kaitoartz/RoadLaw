@@ -4,18 +4,24 @@ public class CarController : MonoBehaviour
 {
     private float speed = 10f;
     private float maxX = -30f;
-    public Semaforo semaforo;
+    [SerializeField]private TrafficManager trafficManager;
+
+    private void Start()
+    {
+        transform.position = new Vector3(0, 40, 0);
+        trafficManager = FindObjectOfType<TrafficManager>();
+    }
 
     private void OnCollisionStay(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Semaforo")){
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+
         if (collision.gameObject.tag == "Street")
         {
             gameObject.SetActive(true);
             GetComponent<Rigidbody>().velocity = transform.forward * speed;
-        }
-        else
-        {
-            gameObject.SetActive(false);
         }
     }
 
@@ -23,7 +29,6 @@ public class CarController : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-
     private void Update()
     {
         if (transform.position.x < maxX)
@@ -31,13 +36,7 @@ public class CarController : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        if (semaforo.currentState == TrafficLightState.Red)
-        {
-            // Detener los autos cuando el semaforo este en rojo
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
-        }
-
-        if (semaforo.currentState == TrafficLightState.Green)
+        if (trafficManager.currentState == TrafficLightState.Green)
         {
             // Mover los autos hacia adelante cuando el semaforo está en verde.
             GetComponent<Rigidbody>().velocity = transform.forward * speed;
