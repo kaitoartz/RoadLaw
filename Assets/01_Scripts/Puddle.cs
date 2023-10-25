@@ -49,16 +49,22 @@ public class Puddle : Distract
 
         if (kid != null)
         {
-            StartCoroutine(esperarParaSaltar());
+            StartCoroutine(EsperarParaSaltar());
             // Aplicamos una fuerza hacia arriba constante al objeto Kid para hacerlo saltar continuamente.
           
         }
     }
 
-    private IEnumerator esperarParaSaltar()
+    private IEnumerator EsperarParaAtacar()
     {
         yield return new WaitForSeconds(2f);
-        kid.rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         animator.SetTrigger("canjump");
+    }
+
+    private IEnumerator EsperarParaSaltar()
+    {
+        yield return new WaitForSeconds(0.5f);
+        kid.rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        StartCoroutine(EsperarParaAtacar());
     }
 }
