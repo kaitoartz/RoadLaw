@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Trampolin : MonoBehaviour
@@ -39,6 +40,7 @@ public class Trampolin : MonoBehaviour
 
             // Aplicamos la fuerza al objeto Kid.
             kid.rb.AddForce(randomJumpForce, ForceMode.Impulse);
+            KidDead();
         }
     }
 
@@ -51,6 +53,13 @@ public class Trampolin : MonoBehaviour
             // Establecemos la referencia a Kid como nula, lo que detendrá el salto.
             kid = null;
         }
+    }
+
+    IEnumerator KidDead()
+    {
+        GameManager.instance.vidas--;
+        Destroy(kid);
+        yield return new WaitForSeconds(4f);
     }
 }
 

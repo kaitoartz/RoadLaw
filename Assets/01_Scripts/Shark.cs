@@ -8,6 +8,7 @@ public class Shark : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Kid"))
         {
+            GameManager.instance.vidas--;
             Destroy(collision.gameObject);
         }
     }

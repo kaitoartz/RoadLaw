@@ -35,6 +35,15 @@ public class CarController : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+        if (transform.position.z < maxX)
+        {
+            gameObject.SetActive(false);
+        }
+
+        if (transform.position.z > 60f)
+        {
+            gameObject.SetActive(false);
+        }
 
         if (trafficManager.currentState == TrafficLightState.Green)
         {

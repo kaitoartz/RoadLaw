@@ -10,7 +10,11 @@ public class Puddle : Distract
     public float jumpForce = 5.0f; // Fuerza de salto que se aplicará al objeto Kid
     private Kid kid; // Referencia al objeto Kid con el que colisionamos
 
-
+    // Este método se ejecuta en cada actualización del juego.
+    private void Update()
+    {
+        saltoTiburon();  
+    }
     // Este método se ejecuta cuando el objeto con este script colisiona con otro objeto que tiene un Collider.
     private void OnTriggerEnter(Collider other)
     {
@@ -24,13 +28,6 @@ public class Puddle : Distract
 
     }
 
-    // Este método se ejecuta en cada actualización del juego.
-    private void Update()
-    {
-        saltoTiburon();
-      
-        
-    }
 
     // Este método se ejecuta cuando el objeto con este script sale de la colisión con otro objeto.
     private void OnTriggerExit(Collider other)

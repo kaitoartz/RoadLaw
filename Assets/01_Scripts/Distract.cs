@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class Distract : MonoBehaviour
 {
-    public Kid kid;
     public bool called;
 
     void Start()
@@ -15,7 +14,7 @@ public class Distract : MonoBehaviour
         transform.parent = null;
     }
 
-    public void Update()
+    private void Update()
     {
         if (called && gameObject.CompareTag("Trap"))
         {

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1089079671587936673}
   - component: {fileID: -1366791193323207144}
   - component: {fileID: -6076414628845437281}
+  - component: {fileID: -7406473410379294406}
   m_Layer: 0
   m_Name: Trampolin
   m_TagString: Trap
@@ -88,6 +89,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minJumpForce: 5
   maxJumpForce: 10
+--- !u!114 &-7406473410379294406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278196101851460436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a04d9a728802b45b82f74286284eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  called: 0
 --- !u!1 &337350970835610239
 GameObject:
   m_ObjectHideFlags: 0

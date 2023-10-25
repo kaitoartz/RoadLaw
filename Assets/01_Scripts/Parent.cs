@@ -50,4 +50,12 @@ public class Parent : MonoBehaviour
             }
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Vehicle"))
+        {
+            GameManager.instance.Perdiste();
+        }
+    }
 }

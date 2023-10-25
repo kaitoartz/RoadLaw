@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 3352762223110427162}
   m_Layer: 0
   m_Name: Tiburon
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,7 +249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8342d377aa8ff5e4485a4836454679c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kid: {fileID: 0}
   called: 0
   animator: {fileID: 4532779594043978680}
   jumpForce: 0.05

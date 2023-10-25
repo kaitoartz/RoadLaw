@@ -5,19 +5,16 @@ using UnityEngine;
 public enum TrafficLightState
 {
     Red,
-    Yellow,
     Green
 }
 
 public class TrafficManager : MonoBehaviour
-{ 
+{
     public delegate void TrafficLightChanged(TrafficLightState newState);
     public static event TrafficLightChanged OnTrafficLightChanged;
     public TrafficLightState currentState;
     public float redTime = 10f;
-    public float yellowTime = 3f;
     public float greenTime = 15f;
-
     private bool semaforoSequenceStarted = false;
 
     void Start()
@@ -35,10 +32,6 @@ public class TrafficManager : MonoBehaviour
         {
             case TrafficLightState.Red:
                 ActivateStopVehicle(true); // Activar Trigger StopVehicle
-                break;
-
-            case TrafficLightState.Yellow:
-                // Lógica para estado amarillo
                 break;
 
             case TrafficLightState.Green:
@@ -60,7 +53,7 @@ public class TrafficManager : MonoBehaviour
                 return;
             }
         }
-        ActivateStopVehicle(false); // Desactiva StopVehicle cuando no hay semáforos activos.
+        ActivateStopVehicle(false); // Desactiva StopVeahicle cuando no hay semáforos activos.
     }
 
     private void ActivateStopVehicle(bool isActive)
@@ -86,10 +79,6 @@ public class TrafficManager : MonoBehaviour
             currentState = TrafficLightState.Green;
             OnTrafficLightChanged?.Invoke(currentState);
             yield return new WaitForSeconds(greenTime);
-
-            currentState = TrafficLightState.Yellow;
-            OnTrafficLightChanged?.Invoke(currentState);
-            yield return new WaitForSeconds(yellowTime);
         }
      }
 }

@@ -14,12 +14,18 @@ public class Kid : MonoBehaviour
     private bool land, pressed;
     [SerializeField] float speed, rotSpeed;
     Vector3 cam, currentPos, offSet;
+
+    public float maxY = -20f;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
     void Update()
     {
+        if (transform.position.y < maxY)
+        {
+            GameManager.instance.vidas--;
+        }
         //niño está distraído.
         if (distracted && !pressed && land && !isDead)
         {

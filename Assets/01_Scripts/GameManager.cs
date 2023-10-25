@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 public class GameManager : MonoBehaviour
@@ -8,6 +9,11 @@ public class GameManager : MonoBehaviour
     public Kid[] kids;
     private int index, probabilityForKid;
     public static GameManager instance;
+    public int vidas = 3;
+
+    public GameObject perdistePanel;
+    public TextMeshProUGUI vidasText;
+
     private void Awake()
     {
         instance = this;
@@ -17,7 +23,21 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(DistractingKids());
     }
-    //Define cada cuÃ¡nto tiempo un niÃ±o podrÃ­a distraerse.
+
+    void Update()
+    {
+        if (vidas <= 0)
+        {
+            Perdiste();
+        }
+        vidasText.text = vidas.ToString();
+    }
+    public void Perdiste()
+    {
+        perdistePanel.SetActive(true);
+        SceneManagerScript.instance.CargarEscenaIntro();
+    }
+    //Define cada cuánto tiempo un niño podría distraerse.
     IEnumerator DistractingKids()
     {
         probabilityForKid = UnityEngine.Random.Range(0, 3);
@@ -28,21 +48,21 @@ public class GameManager : MonoBehaviour
 
     void ConfirmDistraction()
     {
-        //Randomiza el niÃ±o que se distraerÃ¡;
+        //Randomiza el niño que se distraerá;
         index = UnityEngine.Random.Range(0, 6);
-        //Si el niÃ±o llamado no se encuentra distraÃ­do, se distraerÃ¡;
+        //Si el niño llamado no se encuentra distraído, se distraerá;
         if (probabilityForKid == 2 && !kids[index].distracted)
         {
             kids[index].distracted = true;
             DistractorsForKids();
         }
-        //Si el niÃ±o llamado se encuentra distraÃ­do, entonces la funcion se repite hasta que encuentre otro niÃ±o para distraer;
-        else if(probabilityForKid == 2)
+        //Si el niño llamado se encuentra distraído, entonces la funcion se repite hasta que encuentre otro niño para distraer;
+        else if (probabilityForKid == 2)
         {
             ConfirmDistraction();
         }
     }
-    //Asigna el niÃ±o al distractor mÃ¡s cercano existente y que no ha llamado a algun otro niÃ±o anteriormente.
+    //Asigna el niño al distractor más cercano existente y que no ha llamado a algun otro niño anteriormente.
     void DistractorsForKids()
     {
         foreach (Kid k in kids)
