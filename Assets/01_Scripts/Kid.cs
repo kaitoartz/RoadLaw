@@ -97,6 +97,7 @@ public class Kid : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Fila") && distracted)
         {
+            print("ok");
             distracted = false;
             target = false;
             distraction = null;

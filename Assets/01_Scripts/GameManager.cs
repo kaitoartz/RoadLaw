@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
         probabilityForKid = UnityEngine.Random.Range(0, 3);
         yield return new WaitForSeconds(2f);
         ConfirmDistraction();
+        StartCoroutine(DistractingKids());
     }
 
     void ConfirmDistraction()
@@ -53,6 +54,5 @@ public class GameManager : MonoBehaviour
                 d.called = true;
             }
         }
-        StartCoroutine(DistractingKids());
     }
 }

@@ -8,7 +8,7 @@ public class CarController : MonoBehaviour
 
     private void Start()
     {
-        semaforo = FindObjectOfType<Semaforo>(); // Encuentra el semáforo en la escena
+        semaforo = FindObjectOfType<Semaforo>(); // Encuentra el semï¿½foro en la escena
     }
 
     private void OnCollisionStay(Collision collision)
@@ -36,15 +36,15 @@ public class CarController : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        if (semaforo.currentState == TrafficLightState.Green)
+        /*if (semaforo.currentState == TrafficLightState.Green)
         {
-            // Mover los autos hacia adelante cuando el semáforo está en verde.
+            // Mover los autos hacia adelante cuando el semï¿½foro estï¿½ en verde.
             GetComponent<Rigidbody>().velocity = transform.forward * speed;
         }
         else
         {
-            // Detener los autos cuando el semáforo no está en verde.
+            // Detener los autos cuando el semï¿½foro no estï¿½ en verde.
             GetComponent<Rigidbody>().velocity = Vector3.zero;
-        }
+        }*/
     }
 }
