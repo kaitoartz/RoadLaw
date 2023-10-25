@@ -20,9 +20,7 @@ public class Semaforo : MonoBehaviour
 
     void Start()
     {
-
         StartCoroutine(TrafficLightSequence());
-
     }
 
     void Update()
@@ -51,13 +49,13 @@ public class Semaforo : MonoBehaviour
             OnTrafficLightChanged?.Invoke(currentState);
             yield return new WaitForSeconds(redTime);
 
-            currentState = TrafficLightState.Yellow;
-            OnTrafficLightChanged?.Invoke(currentState);
-            yield return new WaitForSeconds(yellowTime);
-
             currentState = TrafficLightState.Green;
             OnTrafficLightChanged?.Invoke(currentState);
             yield return new WaitForSeconds(greenTime);
+
+            currentState = TrafficLightState.Yellow;
+            OnTrafficLightChanged?.Invoke(currentState);
+            yield return new WaitForSeconds(yellowTime);
         }
      }
 }

@@ -3,13 +3,8 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
     private float speed = 10f;
-    private float maxY = -1f;
-    [SerializeField]private Semaforo semaforo;
-
-    private void Start()
-    {
-        semaforo = FindObjectOfType<Semaforo>(); // Encuentra el sem�foro en la escena
-    }
+    private float maxX = -30f;
+    public Semaforo semaforo;
 
     private void OnCollisionStay(Collision collision)
     {
@@ -31,20 +26,21 @@ public class CarController : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < maxY)
+        if (transform.position.x < maxX)
         {
             gameObject.SetActive(false);
         }
 
-        /*if (semaforo.currentState == TrafficLightState.Green)
+        if (semaforo.currentState == TrafficLightState.Red)
         {
-            // Mover los autos hacia adelante cuando el sem�foro est� en verde.
+            // Detener los autos cuando el semaforo este en rojo
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+
+        if (semaforo.currentState == TrafficLightState.Green)
+        {
+            // Mover los autos hacia adelante cuando el semaforo está en verde.
             GetComponent<Rigidbody>().velocity = transform.forward * speed;
         }
-        else
-        {
-            // Detener los autos cuando el sem�foro no est� en verde.
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
-        }*/
     }
 }
