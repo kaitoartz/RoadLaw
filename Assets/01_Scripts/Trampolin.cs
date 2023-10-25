@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-public class Trampolin : Distract
+public class Trampolin : MonoBehaviour
 {
-    public float jumpForce = 5.0f; // Fuerza de salto que se aplicará al objeto Kid
+    public float minJumpForce = 5.0f; // Fuerza de salto mínima
+    public float maxJumpForce = 10.0f; // Fuerza de salto máxima
     private Kid kid; // Referencia al objeto Kid con el que colisionamos
 
     // Este método se ejecuta cuando el objeto con este script colisiona con otro objeto que tiene un Collider.
@@ -26,8 +25,20 @@ public class Trampolin : Distract
         // Verificamos si tenemos una referencia válida al objeto Kid.
         if (kid != null)
         {
-            // Aplicamos una fuerza hacia arriba constante al objeto Kid para hacerlo saltar continuamente.
-            kid.rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            // Generamos una fuerza aleatoria en una dirección aleatoria.
+            Vector3 randomJumpForce = new Vector3(
+                Random.Range(-1f, 1f), // Componente X (dirección horizontal)
+                Random.Range(0.5f, 1f), // Componente Y (dirección vertical)
+                Random.Range(-1f, 1f)  // Componente Z (dirección lateral)
+            );
+
+            // Normalizamos el vector y luego aplicamos una fuerza dentro del rango especificado.
+            randomJumpForce.Normalize();
+            float forceMagnitude = Random.Range(minJumpForce, maxJumpForce);
+            randomJumpForce *= forceMagnitude;
+
+            // Aplicamos la fuerza al objeto Kid.
+            kid.rb.AddForce(randomJumpForce, ForceMode.Impulse);
         }
     }
 
@@ -42,3 +53,4 @@ public class Trampolin : Distract
         }
     }
 }
+
